@@ -1,0 +1,21 @@
+import random
+def generate_an_array(n):
+    #n=10
+    my_array=[]
+    for i in range(n):
+        s=random.randint(0,100)
+        my_array.append(s)
+    return my_array
+my_array_1=generate_an_array(10)
+print(my_array_1)
+
+
+#indexlerini belli etmek için
+for i in range(len(my_array_1)):
+    print(i,":",my_array_1[i],end=" ")
+
+
+#alt altta yazmak için
+
+for item in my_array_1:
+    print(item," ")           #end yazarsak yan yana yazar
