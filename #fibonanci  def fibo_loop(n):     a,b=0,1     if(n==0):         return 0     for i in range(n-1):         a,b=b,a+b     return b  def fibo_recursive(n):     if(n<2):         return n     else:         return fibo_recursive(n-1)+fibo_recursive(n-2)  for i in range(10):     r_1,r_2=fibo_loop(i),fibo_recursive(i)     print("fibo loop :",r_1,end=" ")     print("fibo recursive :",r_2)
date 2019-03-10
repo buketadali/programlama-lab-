@@ -1,0 +1,20 @@
+#fibonanci
+
+def fibo_loop(n):
+    a,b=0,1
+    if(n==0):
+        return 0
+    for i in range(n-1):
+        a,b=b,a+b
+    return b
+
+def fibo_recursive(n):
+    if(n<2):
+        return n
+    else:
+        return fibo_recursive(n-1)+fibo_recursive(n-2)
+
+for i in range(10):
+    r_1,r_2=fibo_loop(i),fibo_recursive(i)
+    print("fibo loop :",r_1,end=" ")
+    print("fibo recursive :",r_2)
