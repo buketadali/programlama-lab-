@@ -1,0 +1,45 @@
+#kendisine aktarılan bir listenin frekans tablosunu ve
+#bunu tekrar eden(return) bir fonk yazınız
+
+my_list=[2,3,2,5,8,2,4,3,3,2,8,5,2]               #bu liste bize frekansını verir
+print(my_list)
+
+c={2:3}  #2 nin frekansı 3 tür anlamına geliyo
+d=c.keys()
+for d in c.keys():
+    print(c[d])
+
+
+#bir yöntem dict yöntemi
+def my_frequency(list):    #frekens listesi
+    frequency_dict={}
+    for item in list:    #ilk elemanı alıp devam ediyo
+        if(item in frequency_dict):
+             frequency_dict[item]= frequency_dict[item]+1
+        else:
+             frequency_dict[item]=1
+
+    return  frequency_dict
+
+
+result=my_frequency(my_list)
+print(result)
+
+#diğer yöntem list yöntemi
+def my_frequency_list(list_1):    #frekens listesi
+    frequency_list=[]
+    for i in range(len(list_1)):
+        s=False
+        for j in range(len(frequency_list)):
+            if(list_1[i]==frequency_list[j][0]):
+                frequency_list[j][1]=frequency_list[j][1]+1
+                s=True
+        if(s==False):
+             frequency_list.append([list_1[i],1]) 
+    return frequency_list
+
+my_list=[2,3,2,5,8,2,4,3,3,2,8,5,2,4,4,4,4,4]             
+print(my_list)
+
+res=my_frequency_list(my_list)
+print(res)
