@@ -1,0 +1,25 @@
+import random
+def generate_an_array(n):
+    #n=10
+    my_array=[]
+    for i in range(n):
+        s=random.randint(0,100)
+        my_array.append(s)
+    return my_array
+my_array_1=generate_an_array(10)
+print(my_array_1)
+
+def my_search_c(array_2,item):
+    found=False
+    indis=-1                     #indisi belirtmek için
+    step=0                       #kaçıncı adımda bulduğunu belirtmek için
+    for i in range(len(array_2)):
+        step=step+1
+        if(array_2[i]==item):
+            found=true
+            indis=1
+            break
+    return (found,indis,step)
+
+my_search_c(my_array_1,68)
+print(my_array_1)
