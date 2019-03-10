@@ -1,0 +1,13 @@
+def my_matrix_scaler_product(alpha,m_2):   
+    result=[]
+    for row in range(len(m_1)):
+        result.append([])
+        for column in range(len(m_1[0])):
+            #print(m_1[row][column],end=" ")
+            result[row].append(m_1[row][column]*alpha)
+        #print()
+    return result
+m_1=[[4,6,3],[8,5,6]]
+alpha=10
+r=my_matrix_scaler_product(alpha,m_1)
+print(r)
