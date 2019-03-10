@@ -1,0 +1,18 @@
+#iki tane matris gönderiliyor bunların toplamını yazdıran program
+matrix_1=[[1,2,3],[4,5,6]]
+print(matrix_1)
+
+def my_matrix_addition(m_1,m_2):
+    result=[]
+    for row in range(len(m_1)):
+        result.append([])
+        for column in range(len(m_1[0])):
+            #print(m_1[row][column],end=" ")
+            result[row].append(m_1[row][column]+m_2[row][column])
+        #print()
+    return result
+matrix_1=[[4,6,3],[8,5,6]]
+matrix_2=[[5,2,3],[6,2,9]]
+r=my_matrix_addition(matrix_1,matrix_2)
+print(r)
+       
