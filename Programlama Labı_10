@@ -1,0 +1,34 @@
+#2x2 lik bir matrisin determinantını bulunuz
+
+matrix_1=[[1,2],[3,4]]
+matrix_2=[[1,2,3],[4,5,6],[7,8,9],[7,8,9]]
+print(matrix_1,matrix_2)
+satır_sayisi=len(matrix_1)
+sutun_sayisi=len(matrix_1[0])
+
+def det_from_2_by_2(m_1):
+    s_1=m_1[0][0]*m_1[1][1]
+    s_2=m_1[0][1]*m_1[1][0]
+    s_3=s_1-s_2
+    return s_3
+print(det_from_2_by_2(matrix_1))
+
+
+
+def delete_row_col_from_matrix(m_1,m,n):
+    result=[]
+    size_1=(len(m_1)-1)
+    size_2=(len(m_1[0])-1)
+    
+    for i in range(size_1):
+        if(i==m):
+            continue
+        row_1=[]
+        for j in range(size_2):
+            if(j==n):
+                continue
+            row_1.append(m_1[i][j])
+        result.append(row_1)
+    return result
+m_2=delete_row_col_from_matrix(matrix_2,1,0)
+print(matrix_2,m_2)
