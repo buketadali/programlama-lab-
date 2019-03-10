@@ -1,0 +1,23 @@
+#power (kuvvet alma)
+
+def power_recursive(m,n):
+    if(n==0):
+        return 1
+    elif(n==1):
+        return m
+    elif(n%2==0):
+        return power_recursive(m*m,n//2)
+    elif(n%2!=0):
+        return power_recursive(m*m,n//2)*m
+
+def power_loop(m,n):
+    s=1
+    for i in range(n):
+        s=s*m
+    return s
+
+m=4
+for i in range(2,10):
+    r_1,r_2=power_loop(m,i),power_recursive(m,i)
+    print("power loop :",r_1,end=" ")
+    print("power recursive :",r_2)
