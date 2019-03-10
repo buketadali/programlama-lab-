@@ -1,0 +1,8 @@
+import random
+a=random.randint(0,100)
+n=10
+my_array=[]
+for i in range(n):
+    s=random.randint(0,100)
+    my_array.append(s)
+print(my_array)
