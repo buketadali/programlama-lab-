@@ -1,0 +1,22 @@
+# mean of list ->listenin ortalamasını bulma
+import random
+def get_n_random_numbers(n=10,min_=-5,max_=5):
+    numbers=[]
+    for i in range(n):
+        numbers.append(random.randint(min_,max_))
+    return numbers
+
+
+
+def my_mean(my_list):
+    s,t=0,0
+    for item in my_list:
+        s=s+1
+        t=t+item
+    mean_=t/s
+    return mean_
+
+my_list=get_n_random_numbers(10,-50,50)
+print(my_list)
+print(my_mean(my_list))
+        
