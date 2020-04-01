@@ -1,0 +1,15 @@
+#linear search on list
+
+def my_linear_search(my_list,item_search):
+    found=(-1,-1)  #deafult,eğer listede yoksa
+    n=len(my_list)
+    for indis in range(n):
+        if(my_list[indis]==item_search):
+            found=(my_list[indis],indis)   #listede bulundu,return bulunan sayı,indisi tuple olarak return edilir
+            #break, uncomment for last found
+    return found
+
+my_list=[2,3,2,5,8,2,4,3,3,2,8,5,2,4,4,4,4,4]
+print(my_list)
+print(my_linear_search(my_list,3))
+
