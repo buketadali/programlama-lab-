@@ -1,0 +1,43 @@
+#median of list
+
+import random
+def get_n_random_numbers(n=10,min_=-5,max_=5):
+    numbers=[]
+    for i in range(n):
+        numbers.append(random.randint(min_,max_))
+    return numbers
+
+
+def my_bubble_sort(my_list):
+    n=len(my_list)
+    print(my_list)
+    for i in range(n-1,-1,-1):
+        for j in range(0,i):
+            if not(my_list[j]<my_list[j+1]):
+                #print("swap işlemi")
+                temp=my_list[j]
+                my_list[j]=my_list[j+1]
+                my_list[j+1]=temp
+    return my_list
+
+
+
+def my_median(my_list):
+    my_list_2=my_bubble_sort(my_list_1)
+    n=len(my_list_2)
+    if(n%2==1):
+        middle=int(n/2)+1
+        median=my_list_2[middle]
+
+    else:
+        middle_1=my_list_2[int(n/2)]
+        middle_2=my_list_2[int(n/2)+1]
+        median=(middle_1+middle_2)/2
+
+    return median
+
+
+
+my_list_1=my_list_2=get_n_random_numbers(5,-10,10)
+print(my_median(my_list_2))
+
