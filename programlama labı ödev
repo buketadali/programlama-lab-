@@ -78,8 +78,9 @@ try:
         #ayrılanlar listesi; her index bir ayı ifade edecek şekilde, o ay içinde ayrılan kişi sayısını tutar.   
         ayrılanlar =[]
         for ay in range(12):
-            ayrılanlar.append(aylar.count(ay+1))
-
+            if aylar.count(ay+1) != 0 :
+                ayrılanlar.append(aylar.count(ay+1))
+     
         #ilişiği kesilen kişileri ekrana yazdırma.
         for ay in range(12):
             print (ay+1 ,". ay ",aylar.count(ay+1)," kişi ilişiğini kesmiş.")   
@@ -98,5 +99,4 @@ try:
 
 except:
    print ("Komut istemcisine yeterli sayıda arguman girmemiş olabilirsiniz. \nLütfen aşağıdaki komutu deneyin :\n python3 170401014_hw_2.py input_dir_name output_dir_name")
-
 
