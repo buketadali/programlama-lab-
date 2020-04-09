@@ -1,0 +1,102 @@
+#09-04-2020
+#Programlama_Ödevi
+#Buket_Adalı
+
+import sys
+import os
+import os.path
+
+import csv
+import datetime
+
+#künye
+print ("09-04-2020")
+print("Programlama_Ödevi")
+print("Buket_Adalı")
+print("170401014")
+print("\n")
+
+#ortalama bulma metodu
+def ortalama(llist):
+    s,t=0,0
+    for item in llist:
+        s=s+1
+        t=t+item
+    mean_=t/s
+    return mean_
+
+#sıralama metodu
+def sırala(llist):
+    n=len(llist)
+    for i in range(n-1,-1,-1):
+        for j in range(0,i):
+            if not(llist[j]<llist[j+1]):
+                temp=llist[j]
+                llist[j]=llist[j+1]
+                llist[j+1]=temp
+    return llist
+
+#medyan bulma metodu
+def medyan(llist):
+    liste_2=sırala(llist)
+    n=len(liste_2)
+    if(n%2==1):
+        orta=int(n/2)+1
+        medyan=liste_2[orta-1]
+    else:
+        orta_1=int(n/2)-1
+        orta_2=orta_1+1
+        medyan=(liste_2[orta_1]+liste_2[orta_2])/2
+    return medyan
+
+#kullanıcının dosya adı girmeden çalıştıma ihtimali için try-except bloğu kullandım.
+try:
+    #içinde bulunulan dizin adresini alma komutu
+    yol = os.getcwd()
+        
+    girdi = sys.argv[1]
+    çıktı = sys.argv[2]
+
+    girdi_dosyası_tam_adı = os.path.join ( yol, girdi , "input_hw_2.csv" )
+    kayıt_yeri = os.path.join( yol, çıktı , "170401014_hw_2_output.txt" ) 
+       
+    with open(girdi_dosyası_tam_adı) as csvfile:
+        readCSV = csv.reader(csvfile, delimiter=';')
+        tarihler = []
+        aylar =[]
+
+        #her bir satırın ayrılış tarihi değerini tarihler dizisine atıyorum.
+        for satır in readCSV:
+            tarih = satır[3]
+            tarihler.append(tarih)
+
+        #datetime kütüphanesiyle verilen formattaki tarihten ay değerini alır.      
+        for index in range(len(tarihler)):
+            m=datetime.datetime.strptime(tarihler[index],"%Y-%m-%d %H:%M:%S.%f")
+            aylar.append(m.month)
+
+        #ayrılanlar listesi; her index bir ayı ifade edecek şekilde, o ay içinde ayrılan kişi sayısını tutar.   
+        ayrılanlar =[]
+        for ay in range(12):
+            ayrılanlar.append(aylar.count(ay+1))
+
+        #ilişiği kesilen kişileri ekrana yazdırma.
+        for ay in range(12):
+            print (ay+1 ,". ay ",aylar.count(ay+1)," kişi ilişiğini kesmiş.")   
+
+        #medyan ve ortalama değerlerini belirlenen dosyaya yazdırma.
+        dosya= open(kayıt_yeri,"w+")
+
+        medyan = "Medyan " +  str( medyan(ayrılanlar) ) + "\n" 
+        ortalama = "Ortalama " + str( ortalama(ayrılanlar) )
+        
+        dosya.write(medyan)
+        dosya.write(ortalama)
+        dosya.close()
+            
+        print ("\nÇıktı dosyası " , kayıt_yeri , " adresine kaydedildi.")
+
+except:
+   print ("Komut istemcisine yeterli sayıda arguman girmemiş olabilirsiniz. \nLütfen aşağıdaki komutu deneyin :\n python3 170401014_hw_2.py input_dir_name output_dir_name")
+
+
