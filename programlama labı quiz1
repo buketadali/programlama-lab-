@@ -1,0 +1,32 @@
+Buket Adalı
+170401014
+Programlama Laboratuvarı 
+quiz 1 – hafta 2 – sympy
+
+SymPy kütüphanesi -> Sembolik matematik için bir Python kütüphanesidir.
+
+from sympy import Symbol  -> SymPy kütüphanesinden Symbol’ü import etme.
+
+from sympy import factor,expand -> SymPy kütüphanesinden factor ve expand fonksiyonlarını kullanılmak üzere import etme.
+
+factor() -> Bir polinom alır ve bunu rasyonel sayılar üzerinden indirgenemez faktörlere dönüştürür. 
+
+expand() -> SymPy'deki en yaygın sadeleştirme işlevlerinden biridir.
+
+from sympy import pprint -> ASCII pretty yazıcıya erişilir.
+
+subs() ->  İkame, bir ifadedeki bir şeyin tüm örneklerini başka bir şeyle değiştirir. subs()methodu kullanılarak yapılır .
+
+import sympy as sym -> sympy isimli kütüphaneyi sym isimli olarak kullanmak üzere import etme.
+
+sqrt() -> Verilen ifadelerin kökünü alan fonksiyon.
+
+exp() -> SymPy bir nokta etrafındaki fonksiyonların asimtotik seri açılımlarını hesaplayabilir. Bir ifadenin üstel değerini verir.
+
+İmport matplotlib.pyplot as plt -> matplotlib.pyplot dosyasını plt olarak içe aktar. Bu dosya kullanılarak bir Holonomik Fonksiyon çizilir.
+
+plt.show() -> fonksiyon görüntüsü ile çalışılırken mutlaka istenir.
+
+import sympy.plotting as syp -> Çizim modülünün merkezi sınıfıdır. Tek bir değişkenin işlevini çizer ve syp sınıfının bir örneğini döndürür.
+
+syp.plot() -> Çizim modülündeki grafik için kullanılır. 
