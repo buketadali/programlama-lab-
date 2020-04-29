@@ -1,0 +1,60 @@
+#heap_python_implementation
+#heapsort algoritması
+import random
+
+random.random()
+k=random.randint(1,10)
+
+def min_heapfiy(array,i):
+    left=2*i+1
+    right=2*i+2
+    lenght=len(array)-1
+    smallest=i
+    if left<=lenght and array[i]>array[left] :
+        smallest=left
+    if right<=lenght and array[smallest]>array[right] :
+        smallest=right
+    if smallest!=i :
+        array[i],array[smallest]=array[smallest],array[i]
+        min_heapfiy(array,smallest)
+    
+def build_min_heap(array):
+    for i in reversed(range(len(array)//2)):
+        min_heapfiy(array,i)
+
+def heapsort(array):
+    array=array.copy()
+    build_min_heap(array)
+    sorted_array=[]
+    for _ in range(len(array)):
+        array[0],array[-1]=array[-1],array[0]
+        sorted_array.append(array.pop())
+        min_heapfiy(array,0)
+    return sorted_array
+
+def insertItemToHeap(array,k):
+    array.append(k)
+    return heapsort(array)
+
+def removeItemFrom(array):
+    array.pop()
+    return heapsort(array) 
+
+print("Orjinal dizi : " )
+my_array_1=[8,10,3,4,7,15,1,2,16]
+print(my_array_1)
+
+print("Build minimum heap fonksiyonu ile heap yapılandırılıyor... " )
+build_min_heap(my_array_1)
+
+print("Dizinin (heapsort ile) sıralanmış hali : " )
+my_array_2=heapsort(my_array_1)
+print(my_array_1,my_array_2)
+
+
+print("Rastgele seçilen sayı : " , k)
+print("Rastgele sayının heap'e eklenmesi sonucu oluşan dizi : ")
+print(insertItemToHeap(my_array_1,k))
+
+print("Rastgele sayının heap'ten çıkarılması sonucu oluşan dizi : ")
+print(removeItemFrom(my_array_1))
