@@ -1,0 +1,114 @@
+
+import random
+random.random()
+#listeyi random olarak bir fonksiyon içerisinde kişi ve sayfa sayısı parametrelerini içererek biçimde ürettim.
+def randomListGenerator( person = 5 , pages = 250 ):
+    randomList = []
+    for i in range(person):
+        r = random.randint(0,pages)
+        k = random.randint(r+1,pages)
+        randomList.append( [r+1 , k ] )
+    return randomList 
+#random listede tutulan kişilerin en çok okudukları sayfa/sayfaları bulduran bir fonksiyon tanımladım.
+def findTheMostPopularPage(randomList) :
+    counts = [0] * 250
+    most = 0 
+    for p in range(250) :
+        #0 dan 250ye kadar sayfa numaraları artarken,
+        #kişilerin okudukları sayfa aralığında olup olmadığı kontrol edilir.
+        for interval in randomList :
+            if ( interval[0] < p < interval[1] ) :
+                counts[p] = counts[p] + 1
+                #en çok okunan sayfa kaç kez okunduğu bilgisi max değişkeninde tutulur
+                if most < counts[p] :
+                    most =  counts[p]
+    mostPopularPages = []
+    for c in range(len(counts)) :
+        if( counts[c] == most ) :
+            mostPopularPages.append(c)
+    print ( '\nB.' + str(most) + ' kez okunarak en çok okunan sayfa numaralarının listesi aşağıdadır : ' )
+    print ( mostPopularPages )
+def bruteForceSolve(randomList) :
+    listHolder = []
+    concurrentList = []
+    i = 0    
+    while(i < 250) :
+        for r in randomList :
+            if r[0] == i :
+                listHolder.append(r)
+                i = r[1]
+                for l in randomList :
+                    if r[0] < l[0] < r[1] :
+                        concurrentList.append( [r,l] )      
+        i += 1
+    discreteList = randomList
+    print( '\nBirbiri ile ortak sayfa/sayfalar okumakta olan kişilerin okumakta olduğu sayfaların aralıkları :' )
+    for cl in concurrentList :
+        print( cl )
+        for rl in randomList :
+            if cl[0] == rl or cl[1] == rl:
+                if len(discreteList) == 1:
+                    discreteList = []
+                    print( 'Yalnızca bir kişi tarafından okunan bir aralık bulunamadı.' )
+                else :
+                    discreteList.remove( rl )
+    toplamSayfa = 0         
+    print( '\nBirbiri ile hiçbir ortak sayfa/sayfalar okumayan kişilerin okumakta olduğu sayfaların aralıkları :' )
+    print( discreteList )
+    print( '\nBruteForce algoritmasının temelinde, kaba kuvvet ile tüm seçeneklerin hesaplanıp denenmesi, karşılaştırılması yatar.' )
+    print( '\nMuhtemel maksimum sayıda sayfa okuyan ve ortak okuduğu sayfa bulunmayan kişiler grubu, ' )
+    print( discreteList )
+    for dl in discreteList:
+        toplamSayfa = toplamSayfa + dl[1] - dl[0] + 1
+    print( 'aralıklarındaki ' + str(toplamSayfa) + ' kadar sayfayı kesin olarak içerir. '  )
+    print( '\nDiğer aralıklar içinse ortaklar arasındaki en yüksek sayıda sayfa içeren aralık tercih edilir.')
+    #ortak aralıkların içerdiği sayfalar hesaplatılıp karşılaştırılıyor ve gruba dahil olma ihtimali bulunan aralıklar ortakMaksimum listesine ekleniyor.
+    ortakMaksimum = []
+    options = []
+    for cl in concurrentList:
+        for i in range(len(concurrentList)) :
+            try:
+                options.append(cl[i][1] - cl[i][0] + 1)
+            except:
+                break
+        ortakMaksimum.append(max(options))
+    toplamSayfa = toplamSayfa + max( ortakMaksimum )
+    print( '\nSonuç olarak, aralıklar arasında ortak sayfa içermeyen ve en çok sayıda sayfa bulunduran grup üyelerinin okuduğu toplam sayfa sayısı :')
+    print(toplamSayfa)
+#random liste üretme
+randomList = randomListGenerator()
+print( 'A. Kişi sayısı (varsayılan olarak 5) ve kitabın kaç sayfa olduğu (varsayılan 250) bilgilerini argüman olarak alan üretici fonksiyon tarafından üretilmiş rastgele liste aşağıdadır : ')
+print(randomList)
+findTheMostPopularPage(randomList)
+print( '\nD. Brute Force yordamıyla ortak sayfa içermeyen aralıklar listesini bulurken; \n ')
+print( ' " Listede k tane kişiden oluşan öyle bir grup vardır ki bunlarun ortak okuduğu sayfa yoktur ')
+print( 've birleşimi okunan sayfa sayısı olarak maksimumdur. "')
+print( '\nİfadesinde maksimum sayıda sayfa sayısı arandığına göre, seçilecek grup ortak okuduğu sayfa olmayan kişilerin hepsini içermelidir. \n ')
+print( '\nBunun yanısıra ortak okuduğu sayfa/sayfalar olan kişiler içinden de, en çok sayfa sayısında kitap okuyan kişinin okuduğu sayfalar gruba dahil edildi. \n ')
+lengthList = bruteForceSolve(randomList)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
